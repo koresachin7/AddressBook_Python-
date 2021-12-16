@@ -11,7 +11,23 @@ from validation import Validation
 class AddressBook:
 
     def remove(self):
-        pass
+        """
+        Description:
+            This method is used for deleting address book details
+        """
+        try:
+            count = 0
+            if len(list) >= 1:
+                id = input("Enter Your Unique id : ")
+                for delete in list:
+                    if delete.id == id:
+                        logger.info(" Data Removed Successfully ")
+                        del list[count]
+                        return
+                    count += 1
+
+        except Exception as e:
+            logger.error(e)
 
     def update(self):
         """
