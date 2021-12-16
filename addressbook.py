@@ -14,7 +14,48 @@ class AddressBook:
         pass
 
     def update(self):
-        pass
+        """
+         Description:
+             This method is used for update address book details from list
+         """
+        if len(list) >= 1:
+            id = input("Enter Your Unique id : ")
+            for i in list:
+                if i.id == id:
+
+                    if True:
+                        option = int(
+                            input(
+                                "Select Any One Option to update your Profile\n 1 First Name \n 2 Mobile Number \n 3 "
+                                "Address \n 4 Zipcode \n 5 city \n 6 state \n "))
+
+                        if option == 1:
+                            name = Validation.validate_name()
+                            i.name = name
+
+                        elif option == 2:
+                            mobile = Validation.validate_mobile()
+                            i.mobile = mobile
+
+                        elif option == 3:
+                            address = Validation.validate_address()
+                            i.address = address
+
+                        elif option == 4:
+                            zip = Validation.validate_zip()
+                            i.zip = zip
+
+                        elif option == 5:
+                            city = Validation.validate_city()
+                            i.city = city
+
+                        elif option == 6:
+                            state = Validation.validate_state()
+                            i.state = state
+
+                        else:
+                            print("Invalid Option")
+                            self.update()
 
     def display(self):
         """
