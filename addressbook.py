@@ -3,12 +3,33 @@
 * @Date: 2021-12-16
 * @Title : Adding Address Book Adding and Display
 """
-
+import json
+import sys
 from loghandler import logger
 from validation import Validation
 
 
 class AddressBook:
+
+    def save(self):
+        """
+    Description:
+        This method is writing or storing address book details from list into json file
+    Parameter:
+        It takes self as a parameter to get addressbook details stored inside list and
+        using json dump it writes those details inside json file.
+
+    """
+        try:
+            with open('addressbook.json', 'w+') as file:
+                json.dump(list, file, indent=2)
+                logger.info("file successfully saved...")
+
+        except Exception as e:
+            logger.error(e)
+
+        finally:
+            file.close()
 
     def remove(self):
         """
@@ -23,6 +44,7 @@ class AddressBook:
                     if delete.id == id:
                         logger.info(" Data Removed Successfully ")
                         del list[count]
+                        self.save()
                         return
                     count += 1
 
@@ -47,27 +69,33 @@ class AddressBook:
 
                         if option == 1:
                             name = Validation.validate_name()
+                            self.save()
                             i.name = name
 
                         elif option == 2:
                             mobile = Validation.validate_mobile()
                             i.mobile = mobile
+                            self.save()
 
                         elif option == 3:
                             address = Validation.validate_address()
                             i.address = address
+                            self.save()
 
                         elif option == 4:
                             zip = Validation.validate_zip()
                             i.zip = zip
+                            self.save()
 
                         elif option == 5:
                             city = Validation.validate_city()
                             i.city = city
+                            self.save()
 
                         elif option == 6:
                             state = Validation.validate_state()
                             i.state = state
+                            self.save()
 
                         else:
                             print("Invalid Option")
@@ -96,14 +124,14 @@ class AddressBook:
 
 class Contact:
 
-    def __init__(self, id, name, mobile, address, zip, city, state):
-        self.id = id
-        self.name = name
-        self.mobile = mobile
-        self.address = address
-        self.zip = zip
-        self.city = city
-        self.state = state
+    def __init__(self, add_new):
+        self.id = add_new.get("id")
+        self.name = add_new.get("name")
+        self.mobile = add_new.get("mobile")
+        self.address = add_new.get("address")
+        self.zip = add_new.get("zip")
+        self.city = add_new.get("city")
+        self.state = add_new.get("state")
 
 
 if __name__ == '__main__':
@@ -127,7 +155,8 @@ if __name__ == '__main__':
             zip = Validation.validate_zip()
             city = Validation.validate_city()
             state = Validation.validate_state()
-            contact = Contact(id, name, mobile, address, zip, city, state)
+            add_new = {"id": id, "name": name, "mobile": mobile, "address": address, "zip": zip, "city": city, "state": state}
+            contact = Contact(add_new)
             list.append(contact)
             logger.info(" Data Added Successfully ")  # if user input is 1 the add a data
         elif choice == 2:
@@ -140,5 +169,8 @@ if __name__ == '__main__':
             address.display()
             logger.info(" Data is Currently Displaying ")  # user input is 4 to print the AddressBook
         elif choice == 5:
+            address.save()
+            logger.info(" Data is Currently Displaying ")
+        elif choice == 6:
             logger.info(" Bye User ")
             exit()
