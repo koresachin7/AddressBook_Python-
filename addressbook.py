@@ -23,9 +23,6 @@ class Contact:
 class AddressBook:
     person_list = []
 
-    # def __int__(self):
-    #     self.list_row = []
-
     def add_detail(self, person_detail):
         """
         Description:
