@@ -26,9 +26,8 @@ def test_remove():
                "state": "MH"}
     contact = Contact(add_new)
     addressbook.add_detail(contact)
-    for delete in addressbook.person_list:
-        if delete.id == 11:
-            del addressbook.person_list[0]
+    id = 11
+    addressbook.remove(id)
     assert len(addressbook.person_list) == 0
 
 
@@ -43,8 +42,12 @@ def test_name_update():
                "state": "MH"}
     contact = Contact(add_new)
     addressbook.add_detail(contact)
-    contact.name = "kapil"
-    assert contact.name == "kapil"
+    id = 11
+    option = 1
+    update_data = "Kapil"
+
+    addressbook.update(id, option, update_data, contact)
+    assert contact.name == "Kapil"
 
 
 def test_mobile_update():
@@ -58,7 +61,11 @@ def test_mobile_update():
                "state": "MH"}
     contact = Contact(add_new)
     addressbook.add_detail(contact)
-    contact.mobile = 8888888888
+    id = 11
+    option = 2
+    update_data = 8888888888
+
+    addressbook.update(id, option, update_data, contact)
     assert contact.mobile == 8888888888
 
 
@@ -73,8 +80,12 @@ def test_address_update():
                "state": "MH"}
     contact = Contact(add_new)
     addressbook.add_detail(contact)
-    contact.address = "At nanded"
-    assert contact.address == "At nanded"
+    id = 11
+    option = 3
+    update_data = "At Nanded"
+
+    addressbook.update(id, option, update_data, contact)
+    assert contact.address == "At Nanded"
 
 
 def test_zip_update():
@@ -88,8 +99,12 @@ def test_zip_update():
                "state": "MH"}
     contact = Contact(add_new)
     addressbook.add_detail(contact)
-    contact.zip = 654321
-    assert contact.zip == 654321
+    id = 11
+    option = 4
+    update_data = 456789
+
+    addressbook.update(id, option, update_data, contact)
+    assert contact.zip == 456789
 
 
 def test_city_update():
@@ -103,7 +118,11 @@ def test_city_update():
                "state": "MH"}
     contact = Contact(add_new)
     addressbook.add_detail(contact)
-    contact.city = "Mumbai"
+    id = 11
+    option = 5
+    update_data = "Mumbai"
+
+    addressbook.update(id, option, update_data, contact)
     assert contact.city == "Mumbai"
 
 
@@ -118,5 +137,9 @@ def test_state_update():
                "state": "MH"}
     contact = Contact(add_new)
     addressbook.add_detail(contact)
-    contact.state = "kerala"
-    assert contact.state == "kerala"
+    id = 11
+    option = 6
+    update_data = "Kerala"
+
+    addressbook.update(id, option, update_data, contact)
+    assert contact.state == "Kerala"

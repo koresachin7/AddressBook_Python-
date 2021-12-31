@@ -4,7 +4,7 @@ from loghandler import logger
 
 class Validation:
     @staticmethod
-    def validate_name():
+    def validate_name(name):
         """
            Description:
                        This method is used for Validate name
@@ -12,18 +12,17 @@ class Validation:
                     It takes first alphabets Capital letter and following are small letter
         """
         try:
-            while True:
-                name = input("Enter your Name :")
-                if re.match("^[A-Z]{1}[a-z]*$", name):
-                    return name
-                else:
-                    logger.error("name should be alphabets")
+            if re.match("^[A-Z]{1}[a-z]*$", name):
+                return name
+            # else:
+            #     print("name should be alphabets")
 
         except ValueError:
             logger.error("Invalid input")
 
+
     @staticmethod
-    def validate_mobile():
+    def validate_mobile(mobile):
         """
            Description:
                        This method is used for Validate Mobile number
@@ -32,7 +31,6 @@ class Validation:
         """
         try:
             while True:
-                mobile = input("Enter your Mobile Number :")
                 if re.match("^[7-9]{1}[0-9]{9}$", mobile):
                     return mobile
                 else:
@@ -42,7 +40,7 @@ class Validation:
             logger.error("Invalid input")
 
     @staticmethod
-    def validate_address():
+    def validate_address(address):
         """
            Description:
                        This method is used for Validate address
@@ -51,7 +49,6 @@ class Validation:
         """
         try:
             while True:
-                address = input("Enter your Address : ")
                 if re.match("^[A-Z]{1}[a-z]+", address):
                     return address
                 else:
@@ -61,7 +58,7 @@ class Validation:
             logger.error("Invalid input")
 
     @staticmethod
-    def validate_zip():
+    def validate_zip(zip):
         """
             Description:
                         This method is used for Validate zip code
@@ -71,7 +68,6 @@ class Validation:
 
         try:
             while True:
-                zip = input("Enter your zip :")
                 if re.match("^[1-9]{1}[0-9]{5}$", zip):
                     return zip
                 else:
@@ -81,7 +77,7 @@ class Validation:
             logger.error("Invalid input")
 
     @staticmethod
-    def validate_city():
+    def validate_city(city):
         """
            Description:
                       This method is used for Validate city name
@@ -89,7 +85,6 @@ class Validation:
 
         try:
             while True:
-                city = input("Enter your city :")
                 if re.match("^[A-Za-z]*$", city):
                     return city
                 else:
@@ -99,7 +94,7 @@ class Validation:
             logger.error("Invalid input")
 
     @staticmethod
-    def validate_state():
+    def validate_state(state):
         """
            Description:
                     This method is used for Validate state name
@@ -107,7 +102,6 @@ class Validation:
 
         try:
             while True:
-                state = input("Enter your state :")
                 if re.match("^[A-Za-z]*$", state):
                     return state
                 else:
@@ -117,7 +111,7 @@ class Validation:
             logger.error("Invalid input")
 
     @staticmethod
-    def validate_id():
+    def validate_id(id):
         """
            Description:
                        This method is used for Validate id number
@@ -126,7 +120,6 @@ class Validation:
         """
         try:
             while True:
-                id = input(" Enter unique id : ")
                 if re.match("^[0-9]{2,3}$", id):
                     return id
                 else:
