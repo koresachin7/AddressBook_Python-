@@ -63,19 +63,38 @@ class Contact:
 
 
 class AddressBook:
-    # person_list = []
-
     def __init__(self):
         self.person_list = []
 
     def add_detail(self, contact):
         """
-        Description:
-                    This method is used for appending object in list
+           Description:
+                      This method is used for appending object in list
         """
         self.person_list.append(contact)
-        print(contact)
-        print(self.person_list)
+
+    def enter_detial(self):
+        """
+            Description:
+                        This method is used for user input
+        """
+        id_input = input("Enter your id :")
+        id = Validation.validate_id(id_input)
+        name_input = input("Enter your Name :")
+        name = Validation.validate_name(name_input)
+        mobile_input = input("Enter your Mobile number :")
+        mobile = Validation.validate_mobile(mobile_input)
+        address_input = input("Enter your Address :")
+        address = Validation.validate_address(address_input)
+        zip_input = input("Enter your Zip :")
+        zip = Validation.validate_zip(zip_input)
+        city_input = input("Enter your City :")
+        city = Validation.validate_city(city_input)
+        state_input = input("Enter your State :")
+        state = Validation.validate_state(state_input)
+        add_dict = {"id": id, "name": name, "mobile": mobile, "address": address, "zip": zip, "city": city,
+                    "state": state}
+        return add_dict
 
     def save(self, add_new):
         """
@@ -87,7 +106,7 @@ class AddressBook:
     """
         try:
             with open('addressbook.json', 'w+') as file:
-                json.dump(add_new, file, indent=7)
+                json.dump(add_new, file, indent=2)
                 logger.info("file successfully saved...")
 
         except Exception as e:
@@ -115,7 +134,7 @@ class AddressBook:
         except Exception as e:
             logger.error(e)
 
-    def update(self, id, option, update_data , contact):
+    def update(self, id, option, update_data):
         """
          Description:
              This method is used for update address book details from list
@@ -125,11 +144,13 @@ class AddressBook:
 
                 for contact_detail in self.person_list:
                     if contact_detail.id == id:
-                        contact_dect = {1: contact.set_name, 2: contact.set_mobile, 3: contact.set_address,
-                                        4: contact.set_zip, 5: contact.set_city, 6: contact.set_state
+                        contact_dect = {1: contact_detail.set_name, 2: contact_detail.set_mobile,
+                                        3: contact_detail.set_address,
+                                        4: contact_detail.set_zip, 5: contact_detail.set_city,
+                                        6: contact_detail.set_state
                                         }
                         contact_dect.get(option)(update_data)
-                        return contact
+                        return contact_detail
 
         except ValueError:
             logger.error("Enter a valid option")
@@ -169,22 +190,7 @@ if __name__ == '__main__':
             choice = int(input(' Press \n 1. To Add new contact \n 2. To Delete\n 3. To Update address book\n'
                                ' 4. To Print Book \n' ' 5. To Quit \n '))  # Asks user for input
             if choice == 1:
-                id_input = input("Enter your id :")
-                id = Validation.validate_id(id_input)
-                name_input = input("Enter your Name :")
-                name = Validation.validate_name(name_input)
-                mobile_input = input("Enter your Mobile number :")
-                mobile = Validation.validate_mobile(mobile_input)
-                address_input = input("Enter your Address :")
-                address = Validation.validate_address(address_input)
-                zip_input = input("Enter your Zip :")
-                zip = Validation.validate_zip(zip_input)
-                city_input = input("Enter your City :")
-                city = Validation.validate_city(city_input)
-                state_input = input("Enter your State :")
-                state = Validation.validate_state(state_input)
-                add_new = {"id": id, "name": name, "mobile": mobile, "address": address, "zip": zip, "city": city,
-                           "state": state}
+                add_new = address_obj.enter_detial()
                 contact = Contact(add_new)
                 address_obj.add_detail(contact)
                 address_obj.save(add_new)
@@ -200,7 +206,7 @@ if __name__ == '__main__':
                         "Select Any One Option to update your Profile\n 1 First Name \n 2 Mobile Number \n 3 "
                         "Address \n 4 Zipcode \n 5 city \n 6 state \n "))
                 update_data = input("Enter Update data here : -")
-                address_obj.update(id, option, update_data, contact)
+                address_obj.update(id, option, update_data)
                 logger.info(" Data Updated Successfully ")  # user input is 3 to update the data
             elif choice == 4:
                 address_obj.display()

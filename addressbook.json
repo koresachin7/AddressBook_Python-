@@ -1,9 +1,9 @@
 {
-       "id": "01",
-       "name": "Sachin",
-       "mobile": "9890980554",
-       "address": "At nanded",
-       "zip": "123456",
-       "city": "pune",
-       "state": "mh"
+  "id": "01",
+  "name": "Sachin",
+  "mobile": "9890980554",
+  "address": "At nanded",
+  "zip": "123456",
+  "city": "pune",
+  "state": "mh"
 }
