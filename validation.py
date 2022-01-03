@@ -14,12 +14,11 @@ class Validation:
         try:
             if re.match("^[A-Z]{1}[a-z]*$", name):
                 return name
-            # else:
-            #     print("name should be alphabets")
+            else:
+                logger.error("name should be alphabets")
 
         except ValueError:
             logger.error("Invalid input")
-
 
     @staticmethod
     def validate_mobile(mobile):

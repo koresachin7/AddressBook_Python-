@@ -46,8 +46,8 @@ def test_name_update():
     option = 1
     update_data = "Kapil"
 
-    addressbook.update(id, option, update_data, contact)
-    assert contact.name == "Kapil"
+    addressbook.update(id, option, update_data)
+    assert addressbook.person_list[0].name == "Kapil"
 
 
 def test_mobile_update():
@@ -65,8 +65,8 @@ def test_mobile_update():
     option = 2
     update_data = 8888888888
 
-    addressbook.update(id, option, update_data, contact)
-    assert contact.mobile == 8888888888
+    addressbook.update(id, option, update_data)
+    assert addressbook.person_list[0].mobile == 8888888888
 
 
 def test_address_update():
@@ -84,8 +84,8 @@ def test_address_update():
     option = 3
     update_data = "At Nanded"
 
-    addressbook.update(id, option, update_data, contact)
-    assert contact.address == "At Nanded"
+    addressbook.update(id, option, update_data)
+    assert addressbook.person_list[0].address == "At Nanded"
 
 
 def test_zip_update():
@@ -122,8 +122,8 @@ def test_city_update():
     option = 5
     update_data = "Mumbai"
 
-    addressbook.update(id, option, update_data, contact)
-    assert contact.city == "Mumbai"
+    addressbook.update(id, option, update_data)
+    assert addressbook.person_list[0].city == "Mumbai"
 
 
 def test_state_update():
@@ -141,5 +141,5 @@ def test_state_update():
     option = 6
     update_data = "Kerala"
 
-    addressbook.update(id, option, update_data, contact)
-    assert contact.state == "Kerala"
+    addressbook.update(id, option, update_data)
+    assert addressbook.person_list[0].state == "Kerala"
