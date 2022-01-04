@@ -66,6 +66,39 @@ class AddressBook:
     def __init__(self):
         self.person_list = []
 
+    def start_menu (self):
+        try:
+            choice = int(input(' Press \n 1. To Add new contact \n 2. To Delete\n 3. To Update address book\n'
+                               ' 4. To Print Book \n' ' 5. To Quit \n '))  # Asks user for input
+            if choice == 1:
+                add_new = address_obj.enter_user_detial()
+                contact = Contact(add_new)
+                address_obj.add_detail(contact)
+                address_obj.save(add_new)
+                logger.info(" Data Added Successfully ")  # if user input is 1 the add a data
+            elif choice == 2:
+                id = input("Enter Your Unique id : ")
+                address_obj.remove(id)
+                logger.info(" Data Removed Successfully ")  # if user input is 2 then delete a data
+            elif choice == 3:
+                id = input("Enter Your Unique id : ")
+                option = int(
+                    input(
+                        "Select Any One Option to update your Profile\n 1 First Name \n 2 Mobile Number \n 3 "
+                        "Address \n 4 Zipcode \n 5 city \n 6 state \n "))
+                update_data = input("Enter Update data here : -")
+                address_obj.update(id, option, update_data)
+                logger.info(" Data Updated Successfully ")  # user input is 3 to update the data
+            elif choice == 4:
+                address_obj.display()
+                logger.info(" Data is Currently Displaying ")  # user input is 4 to print the AddressBook
+            elif choice == 5:
+                logger.info(" Bye User ")
+                exit()
+            address_obj.main()
+        except ValueError:
+            logger.error("Invalid Option")
+
     def add_detail(self, contact):
         """
            Description:
@@ -73,7 +106,7 @@ class AddressBook:
         """
         self.person_list.append(contact)
 
-    def enter_detial(self):
+    def enter_user_detial(self):
         """
             Description:
                         This method is used for user input
@@ -184,35 +217,5 @@ if __name__ == '__main__':
             it creates a object and add details into it and then append them to a list.
     """
     print("Welcome To Address Book...")
-    try:
-        address_obj = AddressBook()
-        while True:
-            choice = int(input(' Press \n 1. To Add new contact \n 2. To Delete\n 3. To Update address book\n'
-                               ' 4. To Print Book \n' ' 5. To Quit \n '))  # Asks user for input
-            if choice == 1:
-                add_new = address_obj.enter_detial()
-                contact = Contact(add_new)
-                address_obj.add_detail(contact)
-                address_obj.save(add_new)
-                logger.info(" Data Added Successfully ")  # if user input is 1 the add a data
-            elif choice == 2:
-                id = input("Enter Your Unique id : ")
-                address_obj.remove(id)
-                logger.info(" Data Removed Successfully ")  # if user input is 2 then delete a data
-            elif choice == 3:
-                id = input("Enter Your Unique id : ")
-                option = int(
-                    input(
-                        "Select Any One Option to update your Profile\n 1 First Name \n 2 Mobile Number \n 3 "
-                        "Address \n 4 Zipcode \n 5 city \n 6 state \n "))
-                update_data = input("Enter Update data here : -")
-                address_obj.update(id, option, update_data)
-                logger.info(" Data Updated Successfully ")  # user input is 3 to update the data
-            elif choice == 4:
-                address_obj.display()
-                logger.info(" Data is Currently Displaying ")  # user input is 4 to print the AddressBook
-            elif choice == 5:
-                logger.info(" Bye User ")
-                exit()
-    except ValueError:
-        logger.error("Invalid Option")
+    address_obj = AddressBook()
+    address_obj.main()
