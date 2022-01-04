@@ -218,4 +218,4 @@ if __name__ == '__main__':
     """
     print("Welcome To Address Book...")
     address_obj = AddressBook()
-    address_obj.main()
+    address_obj.start_menu()
