@@ -4,6 +4,8 @@
 * @Title : Adding json in Address Book
 """
 import json
+
+
 from loghandler import logger
 from validation import Validation
 
@@ -66,7 +68,11 @@ class AddressBook:
     def __init__(self):
         self.person_list = []
 
-    def start_menu (self):
+    def start_menu(self):
+        """
+            Description:
+                        This method is used for start menu for user input
+        """
         try:
             choice = int(input(' Press \n 1. To Add new contact \n 2. To Delete\n 3. To Update address book\n'
                                ' 4. To Print Book \n' ' 5. To Quit \n '))  # Asks user for input
@@ -95,7 +101,7 @@ class AddressBook:
             elif choice == 5:
                 logger.info(" Bye User ")
                 exit()
-            address_obj.main()
+            address_obj.start_menu()
         except ValueError:
             logger.error("Invalid Option")
 
@@ -111,20 +117,21 @@ class AddressBook:
             Description:
                         This method is used for user input
         """
+
         id_input = input("Enter your id :")
-        id = Validation.validate_id(id_input)
+        id = Validation.validation(id_input, "id")
         name_input = input("Enter your Name :")
-        name = Validation.validate_name(name_input)
+        name = Validation.validation(name_input,"name")
         mobile_input = input("Enter your Mobile number :")
-        mobile = Validation.validate_mobile(mobile_input)
+        mobile = Validation.validation(mobile_input,"mobile")
         address_input = input("Enter your Address :")
-        address = Validation.validate_address(address_input)
+        address = Validation.validation(address_input,"address")
         zip_input = input("Enter your Zip :")
-        zip = Validation.validate_zip(zip_input)
+        zip = Validation.validation(zip_input,"zip")
         city_input = input("Enter your City :")
-        city = Validation.validate_city(city_input)
+        city = Validation.validation(city_input,"city")
         state_input = input("Enter your State :")
-        state = Validation.validate_state(state_input)
+        state = Validation.validation(state_input,"state")
         add_dict = {"id": id, "name": name, "mobile": mobile, "address": address, "zip": zip, "city": city,
                     "state": state}
         return add_dict
